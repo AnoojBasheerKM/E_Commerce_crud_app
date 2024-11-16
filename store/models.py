@@ -1,5 +1,7 @@
 from django.db import models
 
+from django.contrib.auth.models import User
+
 # Create your models here.
 
 class BaseModel(models.Model):
@@ -66,6 +68,32 @@ class Product(BaseModel):
     def __str__(self):
         
         return self.title
+    
+class Basket(BaseModel):
+    
+    owner = models.OneToOneField(User,on_delete=models.CASCADE,related_name="cart")
+
+class BasketItem(BaseModel):
+
+    product_object=models.ForeignKey(Product,on_delete=models.CASCADE)
+
+    quantity=models.PositiveIntegerField(default=1)
+
+    size_object=models.ForeignKey(Size,on_delete=models.CASCADE)
+
+    is_order_placed=models.BooleanField(default=False)
+
+    basket_object=models.ForeignKey(Basket,on_delete=models.CASCADE,related_name="cart_item")
+    
+    # Query to fetch basket item to authenticated user
+
+    # BasketItem.objects.filter(basket_object__owner=request.user)
+
+    # request.user.cart.cart_item.filter(is_order_placed=False)
+
+    
+
+    
     
 
     
