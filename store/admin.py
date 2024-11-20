@@ -1,6 +1,8 @@
 from django.contrib import admin
 
-from store.models import Brand,Tag,Size,Category,Product
+from store.models import Brand,Tag,Size,Category,Product,BaseModel
+
+from store.models import User
 
 
 # Register your models here.
@@ -10,5 +12,7 @@ admin.site.register(Tag)
 admin.site.register(Size)
 admin.site.register(Category)
 admin.site.register(Product)
+admin.site.register(BaseModel)
+admin.site.register(User)
 
 

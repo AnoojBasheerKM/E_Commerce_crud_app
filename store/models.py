@@ -1,8 +1,26 @@
 from django.db import models
 
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
+
+from django.db.models.signals import post_save
+
+from random import randint
+
 
 # Create your models here.
+
+
+class User(AbstractUser):
+    
+    is_verified = models.BooleanField(default=False)
+
+    otp = models.CharField(max_length=6,null=True,blank=True)
+
+    def generate_otp(self):
+        
+        self.otp = str(randint(1000,9000))
+
+        self.save()
 
 class BaseModel(models.Model):
     
@@ -22,7 +40,7 @@ class Brand(BaseModel):
     
 class Size(BaseModel):
     
-    size = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
 
     def __str__(self):
         
@@ -90,6 +108,14 @@ class BasketItem(BaseModel):
     # BasketItem.objects.filter(basket_object__owner=request.user)
 
     # request.user.cart.cart_item.filter(is_order_placed=False)
+    
+def create_basket(sender,instance,created,**kwargs):
+    
+    if created:
+        
+        Basket.objects.create(owner = instance)
+        
+post_save.connect(create_basket,User)
 
     
 
