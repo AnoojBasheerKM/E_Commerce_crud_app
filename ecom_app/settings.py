@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,10 +21,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-yixwo%8_0ko(bj%hj6bgm_(b%=#fo-^+iiwhefwgd_ie+acfe='
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -63,6 +64,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'store.context_processors.item_count_context',
             ],
         },
     },
@@ -125,8 +127,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "store.User"
 
-email_host_password = "tgkd cinw tadu waic"
-
 EMAIL_HOST = 'smtp.gmail.com'
 
 EMAIL_USE_TLS = True
@@ -135,10 +135,10 @@ EMAIL_PORT = 587
 
 EMAIL_HOST_USER = 'anoojkm12@gmail.com'
 
-EMAIL_HOST_PASSWORD = 'tgkd cinw tadu waic'
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
-TWILIO_RECOVERY_CODE = "CFTQNBJ5JXS661B4N6EM6FT2"
+TWILIO_RECOVERY_CODE = config('TWILIO_RECOVERY_CODE')
 
-TWILIO_ACCOUNT_SID = "AC2716c305d8297e5976b61904c76fae2f"
+TWILIO_ACCOUNT_SID = config('TWILIO_ACCOUNT_SID')
 
-TWILIO_AUTH_TOKEN = "59690335c4d991963c8c22fb5716daa6"
+TWILIO_AUTH_TOKEN = config('TWILIO_AUTH_TOKEN')

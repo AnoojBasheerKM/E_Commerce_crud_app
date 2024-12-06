@@ -12,7 +12,6 @@ admin.site.register(Tag)
 admin.site.register(Size)
 admin.site.register(Category)
 admin.site.register(Product)
-admin.site.register(BaseModel)
 admin.site.register(User)
 
 

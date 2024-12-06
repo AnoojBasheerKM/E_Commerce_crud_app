@@ -7,6 +7,16 @@
 </head>
 <body>
 
+    {%if messages%}
+
+    {%for m in messages%}
+
+    {{m}}
+
+    {%endfor%}
+
+    {%endif%}
+
     <form action="" method="post">
         {%csrf_token%}
 
