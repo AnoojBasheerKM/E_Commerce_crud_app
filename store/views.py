@@ -40,7 +40,7 @@ def send_otp_email(user):
 
     message = f"otp for account verification is {user.otp}"
 
-    from_email = "anoojkm12@gmail.com"
+    from_email = config('from_email')
 
     to_email = [user.email]
     
@@ -50,16 +50,16 @@ def send_otp_phone(otp):
     
     from twilio.rest import Client
     
-    account_sid = 'AC2716c305d8297e5976b61904c76fae2f'
+    account_sid = config('TWILIO_ACCOUNT_SID')
  
-    auth_token = '59690335c4d991963c8c22fb5716daa6'
+    auth_token = config('TWILIO_AUTH_TOKEN')
     
     client = Client(account_sid, auth_token)
     
     message = client.messages.create(
-    from_='+16015194413',
+    from_=config('from_num'),
     body=otp,
-    to='+916238803312'
+    to=config('to_num')
     )
     print(message.sid)
 
