@@ -129,7 +129,7 @@ AUTH_USER_MODEL = "store.User"
 
 EMAIL_HOST = config('EMAIL_HOST')
 
-EMAIL_USE_TLS = True
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
 
 EMAIL_PORT = config('EMAIL_PORT')
 
