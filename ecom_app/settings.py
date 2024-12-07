@@ -127,11 +127,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "store.User"
 
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = config('EMAIL_HOST')
 
 EMAIL_USE_TLS = True
 
-EMAIL_PORT = 587
+EMAIL_PORT = config('EMAIL_PORT')
 
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 
